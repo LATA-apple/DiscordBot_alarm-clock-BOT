@@ -75,15 +75,17 @@ const videoUrls = [
 client.on('messageCreate', async (message) => {
   if (message.channel.id != '1209947489243893874' && message.channel.id != '1221440502352580758') return;
   if (!message.guild) return;
-  if (message.author.bot) return;
+  //if (message.author.bot) return;
 
-  if (message.content === '再生') {
+  if ((message.content === '再生')||(message.content.includes('satoks が入室！'))) {
     const voiceChannel = message.member.voice.channel;
 
     if (!voiceChannel) {
       return message.reply('Please join a voice channel first!');
     }
-    message.delete();
+    if(!message.content.includes('satoks が入室！')){
+      message.delete();
+    }
     const embed = new MessageEmbed()
       .setColor('RANDOM')
       .setTitle('目覚ましボイス 再生')
